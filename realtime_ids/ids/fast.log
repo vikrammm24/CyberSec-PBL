@@ -1,0 +1,2 @@
+01/12/2026-17:50:39.161193  [**] [1:1000001:1] ICMP Ping Detected [**] [Classification: (null)] [Priority: 3] {ICMP} 192.168.122.240:8 -> 8.8.8.8:0
+01/12/2026-17:50:39.184352  [**] [1:1000001:1] ICMP Ping Detected [**] [Classification: (null)] [Priority: 3] {ICMP} 8.8.8.8:0 -> 192.168.122.240:0

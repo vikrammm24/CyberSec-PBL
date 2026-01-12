@@ -1,0 +1,7 @@
+user_id,login_hour,connections,bytes_sent,destination_port
+user1,10,12,5000,80
+user1,11,15,6000,443
+user1,3,40,90000,22
+user2,14,10,4500,80
+user2,2,30,70000,3389
+user3,9,8,3000,80

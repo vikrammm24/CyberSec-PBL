@@ -1,0 +1,8 @@
+# ICMP Ping Detection
+alert icmp any any -> any any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+
+# SSH Brute Force Attempt
+alert tcp any any -> any 22 (msg:"Possible SSH Brute Force"; threshold:type both, track by_src, count 5, seconds 60; sid:1000002; rev:1;)
+
+# Port Scan Detection
+alert tcp any any -> any any (flags:S; threshold:type both, track by_src, count 20, seconds 5; msg:"Possible Port Scan"; sid:1000003; rev:1;)

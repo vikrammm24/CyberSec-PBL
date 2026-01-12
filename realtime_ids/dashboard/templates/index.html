@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOC Security Dashboard</title>
+    <style>
+        body { font-family: Arial; background:#0f172a; color:white; }
+        .card {
+            background:#1e293b;
+            padding:20px;
+            margin:20px;
+            border-radius:10px;
+            width:250px;
+            display:inline-block;
+        }
+        h1 { color:#38bdf8; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta http-equiv="refresh" content="10">
+
+
+</head>
+<body>
+
+<h1>🔐 Cyber Security Monitoring Dashboard</h1>
+
+<div class="card">
+    <h2>ML Anomaly Detection</h2>
+    <p>Suspicious Flows: <b>{{ anomaly_count }}</b></p>
+    <canvas id="anomalyChart"></canvas>
+</div>
+
+<div class="card">
+    <h2>Behavioral Analytics (UEBA)</h2>
+    <p>Suspicious Users: <b>{{ ueba_count }}</b></p>
+    <canvas id="uebaChart"></canvas>
+</div>
+
+<script>
+const anomalyLabels = {{ anomaly_data.keys() | list | tojson }};
+const anomalyValues = {{ anomaly_data.values() | list | tojson }};
+
+const uebaLabels = {{ ueba_data.keys() | list | tojson }};
+const uebaValues = {{ ueba_data.values() | list | tojson }};
+
+// ML Anomaly Detection Chart
+const anomalyCtx = document.getElementById('anomalyChart').getContext('2d');
+new Chart(anomalyCtx, {
+    type: 'bar',
+    data: {
+        labels: anomalyLabels,
+        datasets: [{
+            label: 'Network Traffic',
+            data: anomalyValues,
+            backgroundColor: ['#22c55e', '#ef4444']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+
+// UEBA Chart
+const uebaCtx = document.getElementById('uebaChart').getContext('2d');
+new Chart(uebaCtx, {
+    type: 'bar',
+    data: {
+        labels: uebaLabels,
+        datasets: [{
+            label: 'User Behavior',
+            data: uebaValues,
+            backgroundColor: ['#22c55e', '#f97316']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false }
+        }
+    }
+});
+</script>
+
+</body>
+
+</html>
