@@ -35,6 +35,22 @@
     <canvas id="uebaChart"></canvas>
 </div>
 
+<div class="card">
+    <h2>Suricata IDS</h2>
+    <p>Live Alerts: <b>{{ suricata_count }}</b></p>
+    <canvas id="suricataChart"></canvas>
+</div>
+
+<div class="card" style="width:500px">
+    <h2>Recent Suricata Alerts</h2>
+    <ul>
+        {% for alert in suricata_alerts %}
+            <li>{{ alert }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+
 <script>
 const anomalyLabels = {{ anomaly_data.keys() | list | tojson }};
 const anomalyValues = {{ anomaly_data.values() | list | tojson }};
@@ -79,6 +95,24 @@ new Chart(uebaCtx, {
         plugins: {
             legend: { display: false }
         }
+    }
+});
+
+const suricataLabels = {{ suricata_data.keys() | list | tojson }};
+const suricataValues = {{ suricata_data.values() | list | tojson }};
+
+const suricataCtx = document.getElementById('suricataChart').getContext('2d');
+new Chart(suricataCtx, {
+    type: 'bar',
+    data: {
+        labels: suricataLabels,
+        datasets: [{
+            data: suricataValues,
+            backgroundColor: ['#22c55e', '#dc2626']
+        }]
+    },
+    options: {
+        plugins: { legend: { display: false } }
     }
 });
 </script>
