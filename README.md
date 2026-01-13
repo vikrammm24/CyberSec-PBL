@@ -159,7 +159,7 @@ Advanced threat hunting capabilities
 ## 👨‍💻 Author
 Vikram (Trishula)
 B.Tech – Data Science
-Cyber Security & SOC Enthusiast
+Cyber Security & IOT Enthusiast
 
 ## 📜 Disclaimer
 This project is developed strictly for educational and academic purposes.
