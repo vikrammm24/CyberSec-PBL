@@ -81,6 +81,7 @@ Network Traffic / Dataset
 ```
 realtime_ids/
 ├── alerts/
+│   ├── telegram_alert.py                    # Telegram alert integration
 │   └── whatsapp_alert.py                    # WhatsApp alert integration
 ├── anomaly_detection/
 │   ├── detect_anomaly.py                    # ML anomaly detection logic
