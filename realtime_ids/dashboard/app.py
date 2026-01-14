@@ -12,7 +12,8 @@ from flask import Flask, render_template, request, redirect, url_for
 
 
 from ids.suricata_reader import get_suricata_alerts
-from alerts.whatsapp_alert import send_whatsapp_alert
+'''from alerts.whatsapp_alert import send_whatsapp_alert'''
+from alerts.telegram_alert import send_telegram_alert
 from anomaly_detection.detect_anomaly import run_anomaly_detection
 from behavioral_analytics.behavior_model import run_ueba
 from dashboard.ping_test import safe_ping
@@ -40,7 +41,7 @@ def index():
 
     # Send WhatsApp alert if Suricata detects attack
     if suricata_count > 0:
-        send_whatsapp_alert(suricata_alerts[0])
+        send_telegram_alert(suricata_alerts[0])
 
     anomaly_data = {
         "Normal": int(max(0, 100 - anomaly_count)),

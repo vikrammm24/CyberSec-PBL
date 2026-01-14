@@ -1,7 +1,9 @@
 import sys
 import os
 import pandas as pd
-from alerts.whatsapp_alert import send_whatsapp_alert
+'''from alerts.whatsapp_alert import send_whatsapp_alert'''
+from alerts.telegram_alert import send_telegram_alert
+
 
 # ---------------- PATH SETUP ----------------
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -41,9 +43,12 @@ def run_ueba():
     suspicious_count = (df['status'] == "Suspicious").sum()
 
     if suspicious_count > 0:
-        send_whatsapp_alert(
+        '''send_whatsapp_alert(
+            f"UEBA Alert!\nSuspicious user activities detected: {suspicious_count}"'''
+        send_telegram_alert(
             f"UEBA Alert!\nSuspicious user activities detected: {suspicious_count}"
-        )
+            )
+
 
     df.to_csv(RESULT_PATH, index=False)
     print(df[['user_id', 'status', 'reason']])

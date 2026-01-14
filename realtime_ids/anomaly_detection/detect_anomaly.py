@@ -2,7 +2,8 @@ import sys
 import os
 import pandas as pd
 import joblib
-from alerts.whatsapp_alert import send_whatsapp_alert
+'''from alerts.whatsapp_alert import send_whatsapp_alert'''
+from alerts.telegram_alert import send_telegram_alert
 
 # ---------------- PATH SETUP ----------------
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -33,9 +34,11 @@ def run_anomaly_detection():
     anomaly_count = (data["prediction"] == "Anomaly").sum()
 
     if anomaly_count > 0:
-        send_whatsapp_alert(
-            f"ML Anomaly Detection Alert!\nSuspicious flows detected: {anomaly_count}"
-        )
+        '''send_whatsapp_alert(
+            f"ML Anomaly Detection Alert!\nSuspicious flows detected: {anomaly_count}"'''
+        send_telegram_alert("ML Anomaly Detected")
+
+
 
     data.to_csv(RESULT_PATH, index=False)
     print(data["prediction"].value_counts())

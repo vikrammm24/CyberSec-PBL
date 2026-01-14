@@ -46,7 +46,7 @@ Sensitive port access
 Effective for detecting insider threats and misuse
 
 ## 🚨 Real-Time Alerting
-Alerts are sent automatically via WhatsApp (Twilio Sandbox)
+Alerts are sent automatically via WhatsApp (Twilio Sandbox),TelegramBot
 Triggered when:
 ML detects anomalous traffic
 UEBA detects suspicious user behavior
