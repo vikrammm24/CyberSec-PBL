@@ -50,6 +50,27 @@
     </ul>
 </div>
 
+<div class="card" style="width:300px">
+    <h2>Live Ping Test</h2>
+    <form method="POST" action="/ping">
+        <input
+            type="text"
+            name="target"
+            placeholder="example.com"
+            required
+            style="width:90%; padding:6px;"
+        >
+        <br><br>
+        <button type="submit" style="padding:6px 12px;">
+            Ping
+        </button>
+    </form>
+    <p style="font-size:12px; color:#94a3b8;">
+        Generates ICMP traffic for live IDS detection
+    </p>
+</div>
+
+
 
 <script>
 const anomalyLabels = {{ anomaly_data.keys() | list | tojson }};

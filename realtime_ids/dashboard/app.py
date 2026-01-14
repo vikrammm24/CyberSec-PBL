@@ -8,16 +8,26 @@ import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, PROJECT_ROOT)
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 
 from ids.suricata_reader import get_suricata_alerts
 from alerts.whatsapp_alert import send_whatsapp_alert
 from anomaly_detection.detect_anomaly import run_anomaly_detection
 from behavioral_analytics.behavior_model import run_ueba
+from dashboard.ping_test import safe_ping
+
 
 
 app = Flask(__name__)
+
+@app.route("/ping", methods=["POST"])
+def ping():
+    target = request.form.get("target")
+    if target:
+        safe_ping(target)
+    return redirect(url_for("index"))
+
 
 @app.route("/")
 def index():
